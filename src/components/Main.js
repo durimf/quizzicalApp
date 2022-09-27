@@ -6,7 +6,6 @@ function Main() {
     <container>
       <Box
         sx={{
-          m: 1,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -16,30 +15,31 @@ function Main() {
           <Box
             sx={{
               backgroundColor: '#F5F7FB',
-              borderRadius: 10,
-              height: 800,
-              width: 1200,
-              m: 50,
+              // backgroundColor: 'red',
+              height: '80vh',
+              width: '70vw',
               display: 'flex',
               flexDirection: 'column',
+              borderRadius: 10,
               alignItems: 'center',
               justifyContent: 'center',
+              margin: 20,
             }}
           >
             <Box
               sx={{
                 backgroundColor: '#FFFAD1',
-                height: 235,
+                height: 300,
                 width: 250,
-                borderBottomLeftRadius: '87%',
-                borderTopRightRadius: 40,
+                borderBottomLeftRadius: '100%',
+                borderTopRightRadius: 30,
                 position: 'relative',
-                bottom: 102,
-                left: 475,
+                bottom: '15.2%',
+                left: '44.4%',
               }}
             ></Box>
             <Typography
-              variant="h4"
+              variant="h2"
               sx={{
                 color: '#293264',
                 weight: '700',
@@ -47,15 +47,31 @@ function Main() {
             >
               Quizzical
             </Typography>
+            <Typography
+              variant="h5"
+              sx={{
+                color: '#293264',
+                weight: '300',
+                margin: 2,
+              }}
+            >
+              Play and find the right answers
+            </Typography>
             <Button
               variant="contained"
               type="submit"
               sx={{
                 backgroundColor: '#4D5B9E',
-                width: 200,
-                height: 50,
+                fontSize: 30,
+                width: 700,
+                height: 80,
                 borderRadius: 5,
-                m: 10,
+                m: 5,
+                color: '#F5F7FB',
+                '&:hover': {
+                  opacity: 0.9,
+                  backgroundColor: '#4D5B9E',
+                },
               }}
             >
               Start quiz
@@ -63,12 +79,13 @@ function Main() {
             <Box
               sx={{
                 backgroundColor: '#DEEBF8',
-                height: 110,
-                width: 180,
+                height: 300,
+                width: 250,
                 borderTopRightRadius: '53%',
+                borderBottomLeftRadius: 30,
                 position: 'relative',
-                top: 101,
-                right: 510,
+                top: '15.2%',
+                right: '44.4%',
               }}
             ></Box>
           </Box>

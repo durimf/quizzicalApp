@@ -30,6 +30,7 @@ export const Navbar = ({ mode, setMode }) => {
     <AppBar
       position="sticky"
       sx={{
+        width: '100%',
         marginBottom: {
           xs: 10,
           md: 20,
@@ -72,29 +73,6 @@ export const Navbar = ({ mode, setMode }) => {
           >
             <Twitter />
           </Button>
-          {/* Start of toggle lights box */}
-          <Box>
-            {mode === 'dark' ? (
-              <Button
-                onClick={(e) => setMode(mode === 'light' ? 'dark' : 'light')}
-                sx={{ minWidth: 10, mb: 1, color: 'text.primary' }}
-              >
-                <Tooltip title="Turn on the light">
-                  <LightMode />
-                </Tooltip>
-              </Button>
-            ) : (
-              <Button
-                onClick={(e) => setMode(mode === 'light' ? 'dark' : 'light')}
-                sx={{ minWidth: 10, mb: 1, color: 'text.primary' }}
-              >
-                <Tooltip title="Turn off the light">
-                  <DarkModeOutlined />
-                </Tooltip>
-              </Button>
-            )}
-          </Box>
-          {/* End of toggle lights box */}
         </Box>
         {/* End of Container md display */}
       </StyledToolbar>
