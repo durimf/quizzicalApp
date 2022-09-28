@@ -1,11 +1,40 @@
-import { Box, Button, Typography } from '@mui/material'
+import { Box, Button, Container, Typography } from '@mui/material'
 import { Stack } from '@mui/system'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Question from './Question'
+import axios from 'axios'
 
 function QuestionsPages() {
+
+  const [data, setData] = useState()
+  const [questions, setQuestions] = useState([]);
+  const url = 'https://opentdb.com/api.php?amount=5&type=multiple'
+
+  useEffect(() => {
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => setData(data.results))
+  }, [url])
+
+
+  let question
+  if(data) {
+      
+
+      question = data.map((question,index) => {
+       
+        return <Question question={question.question} correctAnswer={question.correct_answer} incorrectAnswers={question.incorrect_answers}/>
+
+        
+      })
+    
+  }
+
+
+
+
   return (
-   <container>
+   <Container>
     <Stack>
     <Box
      sx={{
@@ -42,12 +71,10 @@ function QuestionsPages() {
         top: '10.4%',
         right: '14.8%',
         }}
-     ></Box>
-      <Question/>
-      <Question />
-      <Question />
-      <Question />
-      <Question />
+     >
+      
+     </Box>
+              {question}
        <Box sx={{
         display: 'flex',
         alignItems: 'center',
@@ -90,7 +117,7 @@ function QuestionsPages() {
      </form>
     </Box>
       </Stack>
-   </container>
+   </Container>
   )
 }
 

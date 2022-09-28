@@ -1,9 +1,9 @@
-import { Box, Button, Paper, Typography } from '@mui/material'
-import React from 'react'
+import { Box, Button, Typography } from '@mui/material'
+import { Container } from '@mui/system'
 
 function Main() {
   return (
-    <container>
+    <Container>
       <Box
         sx={{
           display: 'flex',
@@ -91,7 +91,7 @@ function Main() {
           </Box>
         </form>
       </Box>
-    </container>
+    </Container>
   )
 }
 
