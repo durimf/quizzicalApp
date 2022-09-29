@@ -15,15 +15,17 @@ function QuestionsPages() {
     fetch(url)
       .then((response) => response.json())
       .then((data) => setData(data.results))
-  }, [url])
+  }, [])
 
 
   let question
   if(data) {
         
-      question = data.map((question,index) => {
-      
-        return <Question question={question.question} correctAnswer={question.correct_answer} incorrectAnswers={question.incorrect_answers} key={index} checkAnswer={checkAnswer} />
+      question = data.map((result,index) => {
+
+        return <Question question={result.question} correctAnswer={result.correct_answer}
+          wrongAnswer={result.incorrect_answers} key={index} checkAnswer={checkAnswer}/>
+        
 
         
       })

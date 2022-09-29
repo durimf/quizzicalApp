@@ -4,22 +4,32 @@ import ButtonComponent from '../components/Button'
 function Question(props) {
 
     const [isClicked, setIsClicked] = useState([
-       { id: 0,
-        isClicked: false},
-       { id: 1,
-        isClicked: false},
-       { id: 2,
-        isClicked: false},
-       { id: 3,
-        isClicked: false}
+       { id: 0, isClicked: false},
+       { id: 1, isClicked: false},
+       { id: 2, isClicked: false},
+       { id: 3, isClicked: false}
     ])
 
     function handleClick(id) {
-        setIsClicked((prevState) =>
-            prevState.map((button) => {
-                return button.id === id ? { ...button, isClicked: !button.isClicked } : button
+       
+        // setIsClicked((prevState) =>
+        //     prevState.map((button) => {
+        //         return button.id === id ? { ...button, isClicked: !button.isClicked } : button
+        //     }),
+        // )
+        setIsClicked(current =>
+            current.map(obj => {
+                if (obj.id !== id) {
+                    return { ...obj, isClicked: false };
+                } else {
+                    return { ...obj, isClicked: true };
+                }
+
+                
             }),
-        )
+        );
+       
+       
         console.log(`button with id ${id} was clicked`)
         console.log(isClicked)
         
