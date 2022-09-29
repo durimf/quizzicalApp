@@ -26,18 +26,6 @@ function Main() {
               margin: 20,
             }}
           >
-            <Box
-              sx={{
-                backgroundColor: '#FFFAD1',
-                height: 300,
-                width: 250,
-                borderBottomLeftRadius: '100%',
-                borderTopRightRadius: 30,
-                position: 'relative',
-                bottom: '15.2%',
-                left: '44.4%',
-              }}
-            ></Box>
             <Typography
               variant="h2"
               sx={{
@@ -76,18 +64,6 @@ function Main() {
             >
               Start quiz
             </Button>
-            <Box
-              sx={{
-                backgroundColor: '#DEEBF8',
-                height: 300,
-                width: 250,
-                borderTopRightRadius: '53%',
-                borderBottomLeftRadius: 30,
-                position: 'relative',
-                top: '15.2%',
-                right: '44.4%',
-              }}
-            ></Box>
           </Box>
         </form>
       </Box>
