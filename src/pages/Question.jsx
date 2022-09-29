@@ -1,31 +1,35 @@
-import { BorderBottom, Margin } from '@mui/icons-material'
-import { Box, Button, Typography } from '@mui/material'
-import React, { useEffect, useState } from 'react'
-
+import { Box, Typography } from '@mui/material'
+import { useState } from 'react'
+import ButtonComponent from '../components/Button'
 function Question(props) {
-    
-    const [isCorrectAnswerClicked, setIsCorrectAnswerClicked] = useState(false)
-    const [isWrongAnswer0Clicked, setIsCorrectAnswer0Clicked] = useState(false)
-    const [isWrongAnswer1Clicked, setIsCorrectAnswer1Clicked] = useState(false)
-    const [isWrongAnswer2Clicked, setIsCorrectAnswer2Clicked] = useState(false)
-    const [isWrongAnswer3Clicked, setIsCorrectAnswer3Clicked] = useState(false)
 
-    const handleCorrectAnswerClick = () => {
-        setIsCorrectAnswerClicked(prevState => !prevState)
+    const [isClicked, setIsClicked] = useState([
+       { id: 0,
+        isClicked: false},
+       { id: 1,
+        isClicked: false},
+       { id: 2,
+        isClicked: false},
+       { id: 3,
+        isClicked: false}
+    ])
+
+    function handleClick(id) {
+        setIsClicked((prevState) =>
+            prevState.map((button) => {
+                return button.id === id ? { ...button, isClicked: !button.isClicked } : button
+            }),
+        )
+        console.log(`button with id ${id} was clicked`)
+        console.log(isClicked)
+        
+       
     }
-    const handleisWrongAnswer0Clicked = () => {
-        setIsCorrectAnswer0Clicked(prevState => !prevState)
-    }
-    const handleisWrongAnswer1Clicked = () => {
-        setIsCorrectAnswer1Clicked(prevState => !prevState)
-    }
-    const handleisWrongAnswer2Clicked = () => {
-        setIsCorrectAnswer2Clicked(prevState => !prevState)
-    }
-    const handleisWrongAnswer3Clicked = () => {
-        setIsCorrectAnswer3Clicked(prevState => !prevState)
-    }
- 
+
+  
+
+    
+   
 
 
   return (
@@ -53,112 +57,36 @@ function Question(props) {
     <Box
     >
 
-              <Button
-                  onClick={() => handleCorrectAnswerClick()}
-                  variant="outlined"
-                  type="submit"
-                  size='medium'
-                  sx={{
-                      backgroundColor: isCorrectAnswerClicked ? "#D6DBF5": "none" ,
-                      border: isCorrectAnswerClicked && 'none',
-                      fontSize: 15,
-                      width: 250,
-                      height: 50,
-                      color: '#293264',
-                      borderRadius: 5,
-                      borderColor: '#293264',
-                      margin: 3,
-                      '&:hover': {
-
-                          backgroundColor: isCorrectAnswerClicked ? "#D6DBF5": 'rgba(214, 219, 245, 0.4)',
-                          border: isCorrectAnswerClicked && "none",
-                          borderColor: isCorrectAnswerClicked ? "none" : '#293264'
-                      },
-                  }}
-              >
-                  {props.correctAnswer.replace(/[|&;$%@"quot#<>()+,]/g, "")}
-              </Button>,
-           
-
-              <Button
-                  onClick={() => handleisWrongAnswer0Clicked()}
-                  variant="outlined"
-                  type="submit"
-                  size='medium'
-                  sx={{
-                      backgroundColor:
-                          isWrongAnswer0Clicked ? "#D6DBF5": "none",
-                      border: isWrongAnswer0Clicked && 'none',
-                      fontSize: 15,
-                      width: 250,
-                      height: 50,
-                      color: '#293264',
-                      borderRadius: 5,
-                      borderColor: '#293264',
-                      margin: 3,
-                      '&:hover': {
-                          backgroundColor: isWrongAnswer0Clicked ? "#D6DBF5" : 'rgba(214, 219, 245, 0.4)',
-                          border: isWrongAnswer0Clicked && "none",
-                          borderColor: isWrongAnswer0Clicked ? "none" : '#293264'
-                      },
-                  }}
-              >
-                  {props.incorrectAnswers[0].replace(/[|&;$%@"quot#<>()+,]/g, "")}
-              </Button>,
-
-              {/* <Button
-                  onClick={() => handleClick(props.id)}
-                  variant="outlined"
-                  type="submit"
-                  size='medium'
-                  sx={{
-                      backgroundColor: isClicked ? "#D6DBF5" : "none",
-                      border: isClicked && 'none',
-                      fontSize: 15,
-                      width: 250,
-                      height: 50,
-                      color: '#293264',
-                      borderRadius: 5,
-                      borderColor: '#293264',
-                      margin: 3,
-                      '&:hover': {
-                          backgroundColor: 'rgba(214, 219, 245, 0.4)',
-
-                          borderColor: '#293264'
-                      },
-                  }}
-              >
-                  {props.incorrectAnswers[1].replace(/[|&;$%@"quot#<>()+,]/g, "")}
-              </Button>,
-           
-               <Button
-                  onClick={() => handleClick(props.id)}
-                 id={props.id}
-                 variant="outlined"
-                  type="submit"
-                   size='medium'
-                   sx={{
-                       backgroundColor: isClicked ? "#D6DBF5" : "none",
-                       border: isClicked && 'none',
-                       fontSize: 15,
-                       width: 250,
-                       height: 50,
-                       color: '#293264',
-                       borderRadius: 5,
-                       borderColor: '#293264',
-                       margin: 3,
-                       '&:hover': {
-                           backgroundColor: 'rgba(214, 219, 245, 0.4)',
-                           borderColor: '#293264'
-                       },
-               }}
-               >
-                  {props.correctAnswer.replace(/[|&;$%@"quot#<>()+,]/g, "")}
-               </Button>    */}
-            
-            
-               
+              <ButtonComponent 
+              id={0}
+              handleClick={handleClick}
+              answer={props.correctAnswer}
+              wasClicked={isClicked[0].isClicked && 'red'}
+              />
+             
+              <ButtonComponent
+                  id={1}
+                  handleClick={handleClick}
+                  answer={props.wrongAnswer[0]}
+                  wasClicked={isClicked[1].isClicked && 'red'}
+              />
+             
+              <ButtonComponent
+                  id={2}
+                  handleClick={handleClick}
+                  answer={props.wrongAnswer[1]}
+                  wasClicked={isClicked[2].isClicked && 'red'}
+              />
               
+              <ButtonComponent
+                  id={3}
+                  handleClick={handleClick}
+                  answer={props.wrongAnswer[2]}
+                  wasClicked={isClicked[3].isClicked && 'red'}
+              />
+           
+            
+            
             
     </Box>
    </Box>
