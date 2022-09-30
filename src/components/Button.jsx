@@ -7,7 +7,7 @@ function ButtonComponent(props) {
   
 
 
- let answer = props.answer
+  let answer = props.answer.replace(/[|&;$%@"#<>()+,]/g, "");
 
   return (
    <Button

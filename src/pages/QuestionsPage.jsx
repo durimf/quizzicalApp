@@ -7,33 +7,36 @@ import axios from 'axios'
 function QuestionsPages() {
 
   const [data, setData] = useState()
-  const [questions, setQuestions] = useState([]);
   const [checkAnswersIsClicked, setCheckAnswersIsClicked] = useState(false);
+  const [playAgain, setPlayAgain] = useState(false)
   const url = 'https://opentdb.com/api.php?amount=5&type=multiple'
 
   useEffect(() => {
     fetch(url)
       .then((response) => response.json())
       .then((data) => setData(data.results))
-  }, [])
+      
+  }, [playAgain])
 
-
+ 
   let question
   if(data) {
       question = data.map((result,index) => {
         return <Question question={result.question} correctAnswer={result.correct_answer}
-          wrongAnswer={result.incorrect_answers} key={index} checkAnswersIsClicked={checkAnswersIsClicked} />
+          wrongAnswer={result.incorrect_answers} key={index} checkAnswersIsClicked={checkAnswersIsClicked} data={data} />
       })
   }
 
-  const handleClick = (e) => {
-    e.preventDefault();
+  const handleCheckResults = () => { 
     setCheckAnswersIsClicked(prevState => !prevState)
+  } 
+
+  const HandleplayAgain = () => {
+    setPlayAgain(playAgain => !playAgain)
+    handleCheckResults()
   }
 
-
- 
-
+  
   return (
    <Container>
     <Stack>
@@ -69,25 +72,47 @@ function QuestionsPages() {
         width: '90%',
         marginTop: 5,
        }}>
-       <Button
-        onClick={handleClick}
-        variant="contained"
-        type="submit"
-        sx={{
-          backgroundColor: '#4D5B9E',
-          fontSize: 25,
-          width: 400,
-          height: 50,
-          color: '#F5F7FB',
-          borderRadius: 5,
-          '&:hover': {
-            opacity: 0.9,
+        {
+                  !checkAnswersIsClicked ?
+          <Button
+          onClick={handleCheckResults}
+          variant="contained"
+          type="submit"
+          sx={{
             backgroundColor: '#4D5B9E',
-          },
-        }}
-        >
-                  {checkAnswersIsClicked ? 'Start Again' : 'Check Results'}
-       </Button>
+            fontSize: 25,
+            width: 400,
+            height: 50,
+            color: '#F5F7FB',
+            borderRadius: 5,
+            '&:hover': {
+              opacity: 0.9,
+              backgroundColor: '#4D5B9E',
+            },
+          }}
+          >
+        Check Results
+       </Button> :
+                    <Button
+                      onClick={HandleplayAgain}
+                      variant="contained"
+                      type="submit"
+                      sx={{
+                        backgroundColor: '#4D5B9E',
+                        fontSize: 25,
+                        width: 400,
+                        height: 50,
+                        color: '#F5F7FB',
+                        borderRadius: 5,
+                        '&:hover': {
+                          opacity: 0.9,
+                          backgroundColor: '#4D5B9E',
+                        },
+                      }}
+                    >
+                     Play Again
+                    </Button>
+        }
          </Box>
       
       </Box>

@@ -28,8 +28,10 @@ function Question(props) {
 
     useEffect(() => {
         setIsClicked(initialState)
-    }, [])
+    }, [props.data])
 
+
+   
     
 
   return (
@@ -57,14 +59,7 @@ function Question(props) {
     <Box
     >
 
-              <ButtonComponent 
-              id={0}
-              handleClick={handleClick}
-              answer={props.correctAnswer}
-              wasClicked={isClicked[0].isClicked}
-              checkResults={props.checkAnswersIsClicked}
-              correctAnswer={isClicked[0].isClicked}
-              />
+
              
               <ButtonComponent
                   id={1}
@@ -74,18 +69,26 @@ function Question(props) {
                   checkResults={props.checkAnswersIsClicked}
                   wrongAnswer={isClicked[1].isClicked}
               />
-             
+              <ButtonComponent
+                  id={0}
+                  handleClick={handleClick}
+                  answer={props.correctAnswer}
+                  wasClicked={isClicked[0].isClicked}
+                  checkResults={props.checkAnswersIsClicked}
+                  correctAnswer={isClicked[0].isClicked}
+              />
+
               <ButtonComponent
                   id={2}
                   handleClick={handleClick}
                   answer={props.wrongAnswer[1]}
-                  wasClicked={isClicked[2].isClicked }
+                  wasClicked={isClicked[2].isClicked}
                   checkResults={props.checkAnswersIsClicked}
                   wrongAnswer={isClicked[2].isClicked}
 
-                  
+
               />
-              
+
               <ButtonComponent
                   id={3}
                   handleClick={handleClick}
@@ -93,7 +96,7 @@ function Question(props) {
                   wasClicked={isClicked[3].isClicked}
                   checkResults={props.checkAnswersIsClicked}
                   wrongAnswer={isClicked[3].isClicked}
-                  
+
               />
            
             
