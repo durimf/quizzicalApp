@@ -8,7 +8,7 @@ function QuestionsPages() {
 
   const [data, setData] = useState()
   const [questions, setQuestions] = useState([]);
-  const [checkAnswer, setCheckAnswer] = useState(false);
+  const [checkAnswersIsClicked, setCheckAnswersIsClicked] = useState(false);
   const url = 'https://opentdb.com/api.php?amount=5&type=multiple'
 
   useEffect(() => {
@@ -20,21 +20,19 @@ function QuestionsPages() {
 
   let question
   if(data) {
-        
       question = data.map((result,index) => {
-
         return <Question question={result.question} correctAnswer={result.correct_answer}
-          wrongAnswer={result.incorrect_answers} key={index} checkAnswer={checkAnswer}/>
-        
-
-        
+          wrongAnswer={result.incorrect_answers} key={index} checkAnswersIsClicked={checkAnswersIsClicked} />
       })
-    
   }
 
-  const handleCheckAnswers = () => {
-    setCheckAnswer(true)
+  const handleClick = (e) => {
+    e.preventDefault();
+    setCheckAnswersIsClicked(prevState => !prevState)
   }
+
+
+ 
 
   return (
    <Container>
@@ -72,7 +70,7 @@ function QuestionsPages() {
         marginTop: 5,
        }}>
        <Button
-        onClick={() => handleCheckAnswers()}
+        onClick={handleClick}
         variant="contained"
         type="submit"
         sx={{
@@ -88,7 +86,7 @@ function QuestionsPages() {
           },
         }}
         >
-        Check answers
+                  {checkAnswersIsClicked ? 'Start Again' : 'Check Results'}
        </Button>
          </Box>
       

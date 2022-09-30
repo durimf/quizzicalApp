@@ -1,7 +1,17 @@
 import { Box, Button, Typography } from '@mui/material'
 import { Container } from '@mui/system'
+import { useEffect, useState } from 'react'
 
 function Main() {
+  const [data, setData] = useState()
+  const url = 'https://opentdb.com/api.php?amount=5&type=multiple'
+
+  useEffect(() => {
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => setData(data.results))
+  }, [])
+
   return (
     <Container>
       <Box
